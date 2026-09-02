@@ -1,0 +1,55 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 24px;
+  height: 52px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.app-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  padding: 5px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover {
+  background: var(--surface2);
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links a.active {
+  background: var(--surface2);
+  color: var(--accent);
+}
+
+.app-main {
+  flex: 1;
+  overflow: auto;
+}

@@ -1,0 +1,368 @@
+<title>Order to Output</title>
+<style>
+  :root {
+    --bg:        #F0F2F1;
+    --surface:   #FAFBFA;
+    --surface-2: #E6EAE8;
+    --ink:       #131A18;
+    --ink-2:     #3C4845;
+    --muted:     #6A7773;
+    --rule:      #D0D6D3;
+    --rule-firm: #B3BCB8;
+    --accent:    #9A5F02;
+    --accent-br: #C0821B;
+    --accent-sf: rgba(154, 95, 2, 0.09);
+
+    --font-body: "Iowan Old Style", "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --font-head: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0F1413;
+      --surface:   #161D1B;
+      --surface-2: #1C2422;
+      --ink:       #E7EBE9;
+      --ink-2:     #C2CAC7;
+      --muted:     #8B9793;
+      --rule:      #273230;
+      --rule-firm: #3A4744;
+      --accent:    #E0A94A;
+      --accent-br: #E0A94A;
+      --accent-sf: rgba(224, 169, 74, 0.10);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg:        #0F1413;
+    --surface:   #161D1B;
+    --surface-2: #1C2422;
+    --ink:       #E7EBE9;
+    --ink-2:     #C2CAC7;
+    --muted:     #8B9793;
+    --rule:      #273230;
+    --rule-firm: #3A4744;
+    --accent:    #E0A94A;
+    --accent-br: #E0A94A;
+    --accent-sf: rgba(224, 169, 74, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 1.5rem 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc {
+    max-width: 54rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    column-gap: 2rem;
+  }
+  .doc > * { grid-column: 2; }
+  .rail { grid-column: 1; }
+  @media (max-width: 780px) {
+    .doc { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+    .doc > *, .rail { grid-column: 1; }
+  }
+
+  h1, h2, h3 { font-family: var(--font-head); text-wrap: balance; margin: 0; line-height: 1.2; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3rem); font-weight: 700; letter-spacing: -0.025em; }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.65rem); font-weight: 650; letter-spacing: -0.017em; }
+  h3 { font-size: 1.02rem; font-weight: 650; }
+
+  p { margin: 0; max-width: 62ch; }
+  strong { font-weight: 700; color: var(--ink); }
+  code { font-family: var(--font-mono); font-size: 0.855em; background: var(--surface-2); padding: 0.1em 0.36em; border-radius: 3px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .lede { font-size: 1.14rem; line-height: 1.55; color: var(--ink-2); max-width: 52ch; }
+
+  header.masthead { padding: 3.75rem 0 0; }
+  header.masthead .eyebrow { display: block; margin-bottom: 1.1rem; }
+  header.masthead h1 { margin-bottom: 1.2rem; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2.2rem 0 0;
+  }
+  .fact { background: var(--surface); padding: 0.75rem 0.85rem 0.85rem; }
+  .fact dt {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--muted);
+    margin-bottom: 0.22rem;
+  }
+  .fact dd { margin: 0; font-family: var(--font-head); font-size: 0.92rem; font-weight: 600; line-height: 1.35; }
+
+  section { padding-top: 2.75rem; }
+  section > * + * { margin-top: 0.9rem; }
+
+  .divider { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0 0; grid-column: 1 / -1; }
+
+  .partnum {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    padding-top: 0.3rem;
+  }
+  @media (max-width: 780px) { .partnum { padding-top: 0; margin-bottom: 0.35rem; } }
+
+  ul { margin: 0; padding-left: 1.15rem; max-width: 62ch; }
+  li { margin-bottom: 0.38rem; padding-left: 0.15rem; }
+  li::marker { color: var(--accent); }
+
+  /* file list */
+  .files { border: 1px solid var(--rule); background: var(--surface); }
+  .filerow {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr) 4.5rem;
+    gap: 0.15rem 1rem;
+    padding: 0.62rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .filerow:last-child { border-bottom: 0; }
+  .filerow .fn { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--ink); }
+  .filerow .fd { font-size: 0.93rem; color: var(--ink-2); }
+  .filerow .fr {
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 680px) {
+    .filerow { grid-template-columns: minmax(0, 1fr) 4rem; }
+    .filerow .fn { grid-column: 1; }
+    .filerow .fr { grid-column: 2; grid-row: 1; }
+    .filerow .fd { grid-column: 1 / -1; }
+  }
+
+  /* people */
+  .people { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .person { background: var(--surface); padding: 1.35rem 1.5rem 1.5rem; }
+  .person > * + * { margin-top: 0.6rem; }
+  .person h3 { font-size: 1.08rem; }
+  .person .role {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .person p { font-size: 0.96rem; color: var(--ink-2); max-width: 60ch; }
+
+  .fixed {
+    background: var(--accent-sf);
+    border-left: 2px solid var(--accent-br);
+    padding: 0.9rem 1.15rem;
+    font-size: 0.94rem;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+  .fixed > * + * { margin-top: 0.45rem; }
+  .fixed strong { color: var(--ink); }
+
+  footer.colophon {
+    grid-column: 1 / -1;
+    margin-top: 3.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+</style>
+
+<div class="doc">
+
+  <header class="masthead">
+    <span class="eyebrow">Atomberg · Software Engineer, Full Stack</span>
+    <h1>Order to Output</h1>
+    <p class="lede">Fourteen days of factory data in six CSV files. Build a database, an API and a frontend on top of it, and deploy it.</p>
+  </header>
+
+  <section>
+    <h2>The problem</h2>
+    <p>A factory has four machines that assemble ceiling fans. Each machine works on one order at a time.</p>
+    <p>An order says which product to make, how many, by when, and on which machine. Every unit a machine finishes is recorded. Every time a machine stops — maintenance, no material, a fault — that is recorded too, with a reason.</p>
+    <p>You are given 14 days of that history as CSV files. Three groups of people need to work with it.</p>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>The people</h2>
+
+    <div class="people">
+      <div class="person">
+        <div class="role">Two people · at a desk · laptops</div>
+        <h3>The planning team</h3>
+        <p>They own the order book. Sales sends them new orders through the day, which they add to the system and assign to a machine. When priorities change, a customer pulls an order forward, or material runs out, they are the ones who update it.</p>
+        <p>Most of their day is spent answering questions: what is the status of this order, what is due this week, what has not been started yet. The order book holds 68 orders today. It will hold thousands.</p>
+      </div>
+
+      <div class="person">
+        <div class="role">One person · on the floor · a 1920 × 1080 display on the wall</div>
+        <h3>The floor supervisor</h3>
+        <p>Their job is keeping the four machines running. They spend the shift walking between them, usually with their hands full, and they do not carry a laptop.</p>
+        <p>The display is mounted high on the wall above the machines. They look up at it in passing, from several metres away, for a second or two at a time. What they are looking for is whether anything needs them right now.</p>
+        <p>Nobody operates this display. There is no mouse and no keyboard, and it has to stay correct without anyone touching it.</p>
+      </div>
+
+      <div class="person">
+        <div class="role">One person · in meetings · a tablet</div>
+        <h3>The plant manager</h3>
+        <p>They are responsible for how the factory performs over weeks, not minutes. They want to understand a period they choose: whether output is where it should be, whether things are getting better or worse, and what is costing the factory the most.</p>
+        <p>What they conclude turns into decisions about staffing, when to schedule maintenance, and which problem to fix first.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>The data</h2>
+
+    <div class="files">
+      <div class="filerow">
+        <span class="fn">machines.csv</span>
+        <span class="fd">The machines on the floor, and the output rate each is expected to sustain.</span>
+        <span class="fr">4</span>
+      </div>
+      <div class="filerow">
+        <span class="fn">skus.csv</span>
+        <span class="fd">The products the factory makes, and the standard time to build one unit of each.</span>
+        <span class="fr">8</span>
+      </div>
+      <div class="filerow">
+        <span class="fn">orders.csv</span>
+        <span class="fd">What to make, how many, by when, on which machine, and where each order has got to.</span>
+        <span class="fr">68</span>
+      </div>
+      <div class="filerow">
+        <span class="fn">unit_events.csv</span>
+        <span class="fd">One row for every unit a machine finished.</span>
+        <span class="fr">80,533</span>
+      </div>
+      <div class="filerow">
+        <span class="fn">downtime_events.csv</span>
+        <span class="fd">One row for every time a machine stopped, with when it started, when it ended and why.</span>
+        <span class="fr">307</span>
+      </div>
+      <div class="filerow">
+        <span class="fn">downtime_reasons.csv</span>
+        <span class="fd">What each stoppage reason means, and whether it was planned or unplanned.</span>
+        <span class="fr">10</span>
+      </div>
+    </div>
+
+    <div class="fixed">
+      <p><strong>Treat 2026-08-17 09:15 as the current time.</strong> The data is a saved snapshot, not a live feed.</p>
+      <p>Timestamps in the files are plain local factory time. No timezones.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <div class="rail partnum">01</div>
+  <section>
+    <h2>Database</h2>
+    <p>Design a relational schema for this data and write a script that loads the CSVs into it.</p>
+    <p>Write the <code>CREATE TABLE</code> statements yourself rather than generating them from an ORM.</p>
+  </section>
+
+  <hr class="divider">
+
+  <div class="rail partnum">02</div>
+  <section>
+    <h2>API</h2>
+    <p>A REST API in Node or Python.</p>
+    <ul>
+      <li>The dataset is 80,000 rows and will grow.</li>
+      <li>Requests sent directly to the API, bypassing your UI, must be validated server-side.</li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <div class="rail partnum">03</div>
+  <section>
+    <h2>Frontend</h2>
+    <p>Build the frontend in React, consuming your own API, so that each of the three people above can do their job.</p>
+    <p>You are building for three different kinds of user, and they should not all be given the same screen:</p>
+    <ul>
+      <li><strong>Management</strong> want a summarised view of a period they choose — enough to see how the factory is doing and decide what to act on. Depth matters more than immediacy here.</li>
+      <li><strong>Factory floor staff</strong> want the immediate picture and nothing else. They are working, not browsing: it has to be readable at a glance, from a distance, with no interaction at all.</li>
+      <li><strong>Desk staff</strong> want detail and control. They search, create and change things, so this is where forms, validation and clear feedback when something is rejected actually matter.</li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <div class="rail partnum">04</div>
+  <section>
+    <h2>Deployment</h2>
+    <p>Deploy the application and give us a link we can open. Where you host it is your choice.</p>
+  </section>
+
+  <hr class="divider">
+
+  <div class="rail partnum">05</div>
+  <section>
+    <h2>README</h2>
+    <ul>
+      <li>How to run it locally, from clone to working app</li>
+      <li>Your schema and indexes, and the reasoning behind them</li>
+      <li>The shape of your API and what drove it</li>
+      <li>What you built for each of the three people, and why that</li>
+      <li>Anything you noticed about the data, and what you did about it</li>
+      <li>Any assumptions you made</li>
+      <li>Anything you cut, and what you would add next</li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>Deliverables</h2>
+    <ul>
+      <li>A private Git repository, with the commit history from your work</li>
+      <li>A live URL</li>
+      <li>The README</li>
+    </ul>
+  </section>
+
+  <footer class="colophon">Atomberg · Software Engineer, Full Stack · take-home assignment</footer>
+
+</div>
