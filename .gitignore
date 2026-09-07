@@ -10,9 +10,12 @@ __pycache__/
 .parcel-cache
 .turbo/
 
-# Environment variables (security sensitive)
-.env
-.env*
+# Environment variables (security sensitive — never commit secrets)
+# Backend .env contains DB credentials and JWT secret — never commit
+backend/.env
+
+# Frontend .env.local may contain local overrides — never commit
+frontend/.env.local
 
 # Operating System files
 Thumbs.db
