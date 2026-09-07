@@ -1,6 +1,9 @@
 /**
  * api.js – Typed fetch wrappers for every backend endpoint.
  *
+ * In development:  requests go to /api/* which Vite proxies to the backend.
+ * In production:   VITE_API_BASE env var points directly to the deployed backend.
+ *
  * Auth flow:
  *  - Reads the access token from localStorage on every call.
  *  - On 401, attempts one silent token refresh then retries the original request.
@@ -8,7 +11,11 @@
  *    AuthContext can clear state and redirect to login without a circular import.
  */
 
-const BASE = '/api'
+// In production VITE_API_BASE = https://backend-delta-murex-24.vercel.app
+// In development it is empty so requests go to /api (Vite proxy handles it)
+const BASE = import.meta.env.VITE_API_BASE
+  ? import.meta.env.VITE_API_BASE.replace(/\/$/, '') // strip trailing slash
+  : '/api'
 
 // ── Core fetch wrapper ────────────────────────────────────────────────────────
 
