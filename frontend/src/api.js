@@ -13,9 +13,7 @@
 
 // In production VITE_API_BASE = https://backend-delta-murex-24.vercel.app
 // In development it is empty so requests go to /api (Vite proxy handles it)
-const BASE = import.meta.env.VITE_API_BASE
-  ? import.meta.env.VITE_API_BASE.replace(/\/$/, '') // strip trailing slash
-  : '/api'
+const BASE = 'https://backend-two-xi-91.vercel.app'
 
 // ── Core fetch wrapper ────────────────────────────────────────────────────────
 
