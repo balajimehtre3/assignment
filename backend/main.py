@@ -8,7 +8,7 @@ Run with:
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from config import SIMULATED_NOW
+from config import CORS_ORIGINS, SIMULATED_NOW
 from routers import analytics, auth, events, floor, machines, orders, skus
 
 app = FastAPI(
@@ -19,7 +19,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,   # set via CORS_ORIGINS env var
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -7,8 +7,6 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
-# ── PostgreSQL ────────────────────────────────────────────────────────────────
-# Full DSN takes priority; individual parts used as fallback.
 DATABASE_URL: str = os.environ.get(
     "DATABASE_URL",
     "postgresql://{user}:{password}@{host}:{port}/{dbname}".format(
@@ -20,11 +18,16 @@ DATABASE_URL: str = os.environ.get(
     ),
 )
 
-# ── JWT ───────────────────────────────────────────────────────────────────────
+
 JWT_SECRET_KEY: str = os.environ.get("JWT_SECRET_KEY", "token")
 JWT_ALGORITHM:  str = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES:  int = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES",  "60"))
 REFRESH_TOKEN_EXPIRE_MINUTES: int = int(os.environ.get("REFRESH_TOKEN_EXPIRE_MINUTES", "10080"))  # 7 days
 
-# ── Simulated factory time ────────────────────────────────────────────────────
+_raw_origins = os.environ.get(
+    "CORS_ORIGINS",
+    "http://localhost:5173,http://localhost:4173",
+)
+CORS_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+
 SIMULATED_NOW = datetime(2026, 8, 17, 9, 15, 0)
