@@ -1,0 +1,19 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Cache directories
+.npm/
+.npm-cache/
+__pycache__/
+.eslintcache
+.parcel-cache
+.turbo/
+
+# Environment variables (security sensitive)
+.env
+.env*
+
+# Operating System files
+Thumbs.db
+.DS_Store

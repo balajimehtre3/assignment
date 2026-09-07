@@ -1,0 +1,84 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  height: 52px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.app-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav-links a {
+  padding: 5px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover {
+  background: var(--surface2);
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links a.active {
+  background: var(--surface2);
+  color: var(--accent);
+}
+
+/* User section */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.nav-username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink2);
+  font-family: var(--font-mono);
+}
+
+.nav-logout {
+  font-size: 12px;
+  padding: 4px 10px;
+  color: var(--muted);
+  border-color: var(--border);
+}
+.nav-logout:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: rgba(224, 90, 74, .08);
+}
+
+.app-main {
+  flex: 1;
+  overflow: auto;
+}

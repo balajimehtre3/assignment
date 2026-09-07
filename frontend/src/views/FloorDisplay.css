@@ -1,0 +1,162 @@
+.floor-wrap {
+  padding: 28px 32px;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+.floor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.floor-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.floor-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+.floor-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.floor-updated { font-size: 12px; color: var(--muted); }
+.floor-error   { font-size: 12px; color: var(--red); }
+
+.floor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) { .floor-grid { grid-template-columns: 1fr; } }
+
+/* ── Machine card ── */
+.machine-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.machine-running { border-color: rgba(74,173,122,.35); }
+.machine-down    { border-color: rgba(224,90,74,.45);  }
+.machine-idle    { border-color: var(--border);        }
+
+.mc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.mc-code {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.mc-name { font-size: 14px; color: var(--muted); flex: 1; }
+.mc-state-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+/* downtime banner */
+.mc-downtime-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(224,90,74,.08);
+  border-bottom: 1px solid rgba(224,90,74,.2);
+}
+.dt-icon   { font-size: 22px; line-height: 1; }
+.dt-reason { font-size: 15px; font-weight: 600; color: var(--red); }
+.dt-meta   { font-size: 12px; color: var(--muted); margin-top: 2px; font-family: var(--font-mono); }
+
+/* order block */
+.mc-order    { padding: 18px 20px 14px; }
+.mc-no-order { padding: 18px 20px; color: var(--muted); font-size: 14px; }
+
+.mc-order-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.order-no { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.sku-desc  { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.progress-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: var(--surface3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--green);
+  border-radius: 99px;
+  transition: width .4s ease;
+  min-width: 2px;
+}
+.progress-pct { font-size: 13px; font-weight: 600; color: var(--green); min-width: 34px; text-align: right; }
+
+.order-counts { font-size: 13px; color: var(--muted); }
+.count-done   { font-size: 24px; font-weight: 700; color: var(--ink); }
+.count-sep    { color: var(--muted); }
+.count-total  { color: var(--ink2); }
+
+/* stats */
+.mc-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.stat {
+  padding: 12px 14px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.stat:last-child { border-right: none; }
+.stat-val  { font-size: 20px; font-weight: 700; color: var(--ink); }
+.stat-lbl  { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-top: 2px; }
+
+.val-green  { color: var(--green) !important; }
+.val-yellow { color: var(--yellow) !important; }
+.val-red    { color: var(--red) !important; }
+
+/* priority dots */
+.dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.dot-red    { background: var(--red); }
+.dot-yellow { background: var(--yellow); }
+.dot-gray   { background: var(--muted); }
