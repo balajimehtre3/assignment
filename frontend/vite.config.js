@@ -5,10 +5,12 @@ export default defineConfig({
   plugins: [react()],
 
   preview: {
-    allowedHosts: ['assignment-2-7l0e.onrender.com'],
+    host: '0.0.0.0',
+    allowedHosts: true,
   },
 
   server: {
+    host: '0.0.0.0',
     port: 5173,
 
     proxy: {
